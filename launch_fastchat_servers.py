@@ -42,11 +42,18 @@ from fastchat.utils import (
     get_window_url_params_js,
 )
 
-
+import subprocess
+import threading
 from clearml import Task
 
 task = Task.init(project_name="test-cleargpt", task_name="test-cleargpt-fastchat")
 
+controller_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.controller"],), daemon=True)
+controller_thread.start()
+
+worker_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.model_worker", "--model-path=gpt2", "--device=cpu"],), daemon=True)
+worker_thread.start()
+time.sleep(30)
 
 
 logger = build_logger("gradio_web_server", "gradio_web_server.log")
