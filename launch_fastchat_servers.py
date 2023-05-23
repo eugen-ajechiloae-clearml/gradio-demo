@@ -53,7 +53,7 @@ controller_thread.start()
 
 worker_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.model_worker", "--model-path=gpt2", "--device=cpu"],))
 worker_thread.start()
-time.sleep(30)
+time.sleep(60)
 
 
 logger = build_logger("gradio_web_server", "gradio_web_server.log")
@@ -662,7 +662,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model-list-mode",
         type=str,
-        default="once",
+        default="reload",
         choices=["once", "reload"],
         help="Whether to load the model list once or reload the model list every time.",
     )
