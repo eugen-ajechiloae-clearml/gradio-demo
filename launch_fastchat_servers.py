@@ -48,12 +48,14 @@ from clearml import Task
 
 task = Task.init(project_name="test-cleargpt", task_name="test-cleargpt-fastchat")
 
-controller_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.controller"],))
+controller_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.controller", "--host=localhost", "--port=21001"],))
 controller_thread.start()
-
-worker_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.model_worker", "--model-path=gpt2", "--device=cpu"],))
+time.sleep(20)
+worker_thread = threading.Thread(target=subprocess.run, args=(["python", "-m", "fastchat.serve.model_worker",
+                                                               "--model-path=gpt2", "--device=cpu", "--host=localhost", "--port=21002",
+                                                               "--worker-address=http://localhost:21002",
+                                                               "--controller-address=http://localhost:21001"],)) 
 worker_thread.start()
-time.sleep(60)
 
 
 logger = build_logger("gradio_web_server", "gradio_web_server.log")
