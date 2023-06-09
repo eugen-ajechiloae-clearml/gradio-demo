@@ -1,8 +1,6 @@
 import gradio as gr
 import numpy as np
-from clearml import Task
 
-# task = Task.current_task()
 
 def image_generator(text):
     return np.random.randint(0, 255, size=(244, 244, 3))
