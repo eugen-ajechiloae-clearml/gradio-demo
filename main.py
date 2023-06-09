@@ -19,5 +19,5 @@ with gr.Blocks() as demo:
     button.click(fn=image_generator, inputs=gr.Textbox(), outputs=gr.Image())
 
 demo.queue(concurrency_count=3)
-demo.launch(server_name="0.0.0.0") #, root_path=f"/service/{task.id}")
+demo.launch(server_name="0.0.0.0", root_path=f"/service/{task.id}")
 
