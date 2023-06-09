@@ -2,7 +2,7 @@ import gradio as gr
 import numpy as np
 from clearml import Task
 
-task = Task.current_task()
+# task = Task.current_task()
 
 def image_generator(text):
     return np.random.randint(0, 255, size=(244, 244, 3))
@@ -13,5 +13,5 @@ with gr.Blocks() as demo:
     button.click(fn=image_generator, inputs=gr.Textbox(), outputs=gr.Image())
 
 demo.queue(concurrency_count=3)
-demo.launch(server_name="0.0.0.0", root_path=f"/service/{task.id}")
+demo.launch(server_name="0.0.0.0") # , root_path=f"/service/{task.id}")
 
