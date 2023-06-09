@@ -1,16 +1,15 @@
-# import gradio
+import gradio as gr
+import numpy as np
 
 
-# def greet(name):
-#     return "Hello " + name + "!"
+def image_generator(text):
+    return np.random.randint(0, 255, size=(244, 244, 3))
 
 
-# demo = gradio.Interface(
-#     fn=greet, inputs="text", title='Hello from main', outputs="text"
-# )
-# demo.launch()
+with gr.Blocks() as demo:
+    button = gr.Button(label="Generate Image")
+    button.click(fn=image_generator, inputs=gr.Textbox(), outputs=gr.Image())
 
-import subprocess
-
-subprocess.run("python -m fastchat.serve.gradio_web_server", check=True, shell=True)
+demo.queue(concurrency_count=3)
+demo.launch()
 
