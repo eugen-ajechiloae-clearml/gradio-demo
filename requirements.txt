@@ -1,4 +1,4 @@
 # clearml==1.11.1rc1
-git+https://bitbucket.org/seematics/trains-internal.git@58dd1e2d22f45a78517fe53f39cc81750f44fbef
+git+https://bitbucket.org/seematics/trains-internal.git@c82be314cb119eeafe353f44f060a78a315b6fb5
 gradio==3.33.1
 # fschat==0.2.10
