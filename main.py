@@ -5,7 +5,7 @@ import clearml
 
 
 if __name__ == "__main__":
-    clearml.Task.init()
+#    clearml.Task.init()
 
     print(clearml.__version__)
     print(PatchGradio._current_task)
