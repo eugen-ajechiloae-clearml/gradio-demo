@@ -6,6 +6,7 @@ import clearml
 
 if __name__ == "__main__":
 #    clearml.Task.init()
+    task = clearml.Task.current_task()
 
     print(clearml.__version__)
     print(PatchGradio._current_task)
@@ -20,5 +21,5 @@ if __name__ == "__main__":
         button.click(fn=image_generator, inputs=gr.Textbox(), outputs=gr.Image())
 
     demo.queue(concurrency_count=3)
-    demo.launch(server_name="0.0.0.0") # , root_path=f"/service/{task.id}")
+    demo.launch(server_name="0.0.0.0", root_path=f"/service/{task.id}")
 
