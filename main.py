@@ -1,7 +1,9 @@
 import gradio as gr
 import numpy as np
 from clearml.binding.gradio_bind import PatchGradio
+import clearml
 
+print(clearml.__version__)
 print(PatchGradio._current_task)
 
 
