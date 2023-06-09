@@ -1,8 +1,9 @@
 import gradio as gr
 import numpy as np
-from clearml import Task
+from clearml.binding.gradio_bind import PatchGradio
 
-Task.init("test_gradio", "test_gradio")
+print(PatchGradio._current_task)
+
 
 def image_generator(text):
     return np.random.randint(0, 255, size=(244, 244, 3))
