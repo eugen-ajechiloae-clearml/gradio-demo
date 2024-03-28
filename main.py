@@ -2,12 +2,21 @@ import gradio as gr
 import numpy as np
 from clearml.binding.gradio_bind import PatchGradio
 import clearml
+import argparse
 import gradio.routes
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="ClearML Gradio arguments")
+    parser.add_argument("--some_string_param", type=str)
+    parser.add_argument("--some_int_param", type=int)
+    args = parser.parse_args()
+    print("String param:", args.some_string_param, type(args.some_string_param))
+    print("Int param:", args.some_int_param, type(args.some_int_param))
+
     clearml.Task.init()
     task = clearml.Task.current_task()
+
 
     print(clearml.__version__)
     print(PatchGradio._current_task)
